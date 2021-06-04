@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const pageRoute = require('./routes/pageRoute.js');
 const courseRoute = require('./routes/courseRoute.js');
 const categoryRoute = require('./routes/categoryRoute');
+const userRoute = require('./routes/userRoute');
 
 mongoose.connect(process.env.MONGOURL, {
   useNewUrlParser: true,
@@ -30,6 +31,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/', pageRoute);
 app.use('/courses', courseRoute);
 app.use('/categories', categoryRoute);
+app.use('/users', userRoute);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
