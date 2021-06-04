@@ -1,10 +1,16 @@
 const express = require('express');
+const pageRoute = require('./routes/pageRoute.js');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).send('INDEX SAYFASI');
-});
+//Template Engine
+app.set('view engine', 'ejs');
+
+//Middlewares
+app.use(express.static('public'));
+
+//Routes
+app.use('/', pageRoute);
 
 const port = 3000;
 app.listen(port, () => {
