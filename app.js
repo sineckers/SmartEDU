@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 const pageRoute = require('./routes/pageRoute.js');
 const courseRoute = require('./routes/courseRoute.js');
@@ -22,12 +24,27 @@ const app = express();
 //Template Engine
 app.set('view engine', 'ejs');
 
+global.userIN = null;
+
 //Middlewares
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
+app.use(
+  session({
+    secret: 'my_keyboard_cat', // Buradaki texti değiştireceğiz.
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGOURL }),
+  })
+);
+
 
 //Routes
+app.use('*', (req, res, next)=> {
+  userIN = req.session.userID;
+  next();
+})
 app.use('/', pageRoute);
 app.use('/courses', courseRoute);
 app.use('/categories', categoryRoute);
