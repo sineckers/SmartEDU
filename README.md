@@ -1,8 +1,8 @@
 # Patika.dev SmartEDU
 
-Patika.dev *Node.js Backend Patikası* SmartEdu Ödevi.
+Patika.dev *Node.js Backend Patikası* SmartEDU.
 
-# Kullanılan Teknolojiler
+# Technologies Used
 
  1. Express.JS
  2. MongoDB
@@ -10,3 +10,6 @@ Patika.dev *Node.js Backend Patikası* SmartEdu Ödevi.
  4. BCrypt
  5. Slugify
 
+# Live Test
+
+[See on Heroku](https://sineckers-smartedu.herokuapp.com)
